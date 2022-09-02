@@ -48,6 +48,10 @@ const App: FC = () => {
     setOpenModal(true)
   }, [dispatch])
 
+  const handleDeleteUser = useCallback(() => {
+    if (currentUser) dispatch(user.actions.deleteUser(currentUser))
+  }, [dispatch, currentUser])
+
   return (
     <Container>
       <div className="py-16 md:py-28">
@@ -80,6 +84,7 @@ const App: FC = () => {
                 <UserPreview
                   user={currentUser}
                   editCurrentUser={handleEditCurrentUser}
+                  deleteCurrentUser={handleDeleteUser}
                 />
               </div>
             </div>

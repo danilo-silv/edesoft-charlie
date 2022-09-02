@@ -8,9 +8,14 @@ import Icon from '../../atoms/Icon'
 interface TProps {
   user: TUser
   editCurrentUser: () => void
+  deleteCurrentUser: () => void
 }
 
-const UserPreview: FC<TProps> = ({ user, editCurrentUser }) => {
+const UserPreview: FC<TProps> = ({
+  user,
+  editCurrentUser,
+  deleteCurrentUser
+}) => {
   const {
     name: { firstname, lastname },
     address: { street, number, city, zipcode },
@@ -20,6 +25,10 @@ const UserPreview: FC<TProps> = ({ user, editCurrentUser }) => {
 
   const handleEditCurrentUser = () => {
     if (editCurrentUser) editCurrentUser()
+  }
+
+  const handleDeleteCurrentUser = () => {
+    if (deleteCurrentUser) deleteCurrentUser()
   }
 
   return (
@@ -85,6 +94,15 @@ const UserPreview: FC<TProps> = ({ user, editCurrentUser }) => {
           <Text variant="xs" textColor={theme.colors.text.primaryLight}>
             {phone}
           </Text>
+        </div>
+
+        <div className="flex justify-center mt-3 w-full">
+          <Icon
+            name="trash"
+            cursor="pointer"
+            color={theme.colors.text.error}
+            onClick={handleDeleteCurrentUser}
+          />
         </div>
       </div>
     </div>

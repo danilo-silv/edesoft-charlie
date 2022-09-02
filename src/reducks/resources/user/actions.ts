@@ -54,6 +54,21 @@ export const createUser =
     }
   }
 
+export const deleteUser =
+  (user: TUser): AppThunk =>
+  async (dispatch) => {
+    try {
+      dispatch(setLoading(true))
+
+      await integration.resources.user.requests.deleteUser(user)
+
+      //simulating a new fake listing
+      dispatch(getUsers())
+    } catch (error) {
+      dispatch(setUsersFailed({ message: 'Um erro ocorreu ao criar usuário' }))
+    }
+  }
+
 export const currentUser =
   (user?: TUser): AppThunk =>
   async (dispatch) => {

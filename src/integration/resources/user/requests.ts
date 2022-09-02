@@ -7,3 +7,6 @@ export const updateUser = (user: TUser) =>
   client.put<TUser>(`/users/${user.id}`, user)
 
 export const createUser = (user: TUser) => client.post<TUser>('/users', user)
+
+export const deleteUser = (user: TUser) =>
+  client.delete<TUser>(`/users/${user.id}`)

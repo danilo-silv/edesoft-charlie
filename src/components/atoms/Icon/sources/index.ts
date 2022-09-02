@@ -4,6 +4,7 @@ import ModalClose from './modalClose'
 import Pencil from './pencil'
 import Phone from './phone'
 import Pin from './pin'
+import Trash from './trash'
 
 export default {
   pencil: Pencil,
@@ -11,5 +12,6 @@ export default {
   mail: Mail,
   phone: Phone,
   modalClose: ModalClose,
-  'alert-circle': AlertCircle
+  'alert-circle': AlertCircle,
+  trash: Trash
 }

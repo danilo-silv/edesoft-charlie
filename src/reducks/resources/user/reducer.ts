@@ -53,15 +53,15 @@ export const usersSlice = createSlice({
     setCurrentUser: (state, { payload }: PayloadAction<TUser | undefined>) => {
       state.currentUser = payload
     },
-    createPost(state, { payload }: PayloadAction<TUser>) {
+    createUser(state, { payload }: PayloadAction<TUser>) {
       state.users?.push(payload)
     },
-    updatePost(state, { payload }: PayloadAction<TUser>) {
+    updateUser(state, { payload }: PayloadAction<TUser>) {
       state.users = state.users?.map((user) =>
         user.id === payload.id ? { ...payload } : user
       )
     },
-    deletePost(state, { payload }: PayloadAction<number>) {
+    deleteUser(state, { payload }: PayloadAction<number>) {
       state.users = state.users?.filter((user) => user.id !== payload)
     },
     setUsersFailed: (state, { payload }: PayloadAction<UserError>) => {
@@ -75,9 +75,9 @@ const { actions, reducer } = usersSlice
 export const {
   setLoading,
   setUsers,
-  createPost,
-  updatePost,
-  deletePost,
+  createUser,
+  updateUser,
+  deleteUser,
   setUsersFailed,
   setCurrentUser
 } = actions
