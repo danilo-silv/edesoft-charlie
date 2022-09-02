@@ -1,5 +1,9 @@
+import { useCallback } from 'react'
+
 import styled, { useTheme } from 'styled-components'
 
+import { app } from '../../../hooks'
+import * as resources from '../../../reducks/resources'
 import { TUser } from '../../../reducks/resources/user/reducer'
 import { Avatar, Heading, Text } from '../../atoms'
 
@@ -11,12 +15,31 @@ const Item = styled.div`
   position: relative;
 `
 
-const UserItemList: React.FC<TUser> = ({ name, email, phone }) => {
+const UserItemList: React.FC<TUser> = (user) => {
+  const { name, email, phone, id } = user
+
   const theme = useTheme()
 
+  const { useAppSelector, useAppDispatch } = app
+
+  const { currentUser } = useAppSelector((state) => state.userReducer)
+
+  const dispatch = useAppDispatch()
+
+  const handleCurrentUser = useCallback(() => {
+    return dispatch(resources.user.actions.currentUser(user))
+  }, [user, dispatch])
+
+  const isActive = currentUser?.id === id
+
   return (
-    <Item>
-      <div className="flex justify-between mt-2">
+    <Item
+      onClick={handleCurrentUser}
+      className={`cursor-pointer border-b py-2 border-secondary-lightest divide-secondary-lightest ${
+        isActive && 'bg-brand-hover'
+      }`}
+    >
+      <div className="flex justify-between">
         <div className="flex justify-center ml-4">
           <Avatar
             size="lg"

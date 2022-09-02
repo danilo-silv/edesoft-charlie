@@ -50,6 +50,9 @@ export const usersSlice = createSlice({
     setUsers: (state, { payload }: PayloadAction<TUser[]>) => {
       state.users = payload
     },
+    setCurrentUser: (state, { payload }: PayloadAction<TUser>) => {
+      state.currentUser = payload
+    },
     createPost(state, { payload }: PayloadAction<TUser>) {
       state.users?.push(payload)
     },
@@ -75,7 +78,8 @@ export const {
   createPost,
   updatePost,
   deletePost,
-  setUsersFailed
+  setUsersFailed,
+  setCurrentUser
 } = actions
 
 export default reducer

@@ -34,17 +34,16 @@ const App: FC = () => {
           </Heading>
 
           {users?.length && (
-            <>
-              <div className="col-span-8 col-start-1 mb-4 lg:mb-0 lg:relative">
-                <UserList users={users} />
+            <div className="col-span-8 col-start-1 mb-4 lg:mb-0 lg:relative">
+              <UserList users={users} />
+            </div>
+          )}
+          {currentUser && (
+            <div className="col-span-4 col-start-9">
+              <div className="lg:sticky top-24">
+                <UserPreview user={currentUser} />
               </div>
-
-              <div className="col-span-4 col-start-9">
-                <div className="lg:sticky top-24">
-                  <UserPreview user={users[0]} />
-                </div>
-              </div>
-            </>
+            </div>
           )}
         </div>
       </div>

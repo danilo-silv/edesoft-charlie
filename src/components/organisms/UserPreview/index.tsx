@@ -10,7 +10,8 @@ interface TProps {
 
 const UserPreview: FC<TProps> = ({ user }) => {
   const {
-    name: { firstname, lastname }
+    name: { firstname, lastname },
+    address: { street, city, zipcode }
   } = user
 
   return (
@@ -23,7 +24,8 @@ const UserPreview: FC<TProps> = ({ user }) => {
         style={{
           fontWeight: 600,
           lineHeight: '125%',
-          margin: '16px 0px'
+          margin: '16px 0px',
+          textTransform: 'capitalize'
         }}
         textColor={theme.colors.text.primaryDarkest}
         level={6}
@@ -43,7 +45,7 @@ const UserPreview: FC<TProps> = ({ user }) => {
         textColor={theme.colors.brand.primary}
         className="uppercase"
       >
-        {new Date().toLocaleDateString()}
+        {street}, {city}, {zipcode}
       </Text>
     </div>
   )
