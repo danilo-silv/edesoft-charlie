@@ -14,6 +14,9 @@ export const getClassesBySize = (size?: string): string => {
     case 'lg':
       return 'w-16 h-16'
 
+    case 'xlg':
+      return 'w-24 h-24'
+
     default:
       return 'w-16 h-16'
   }

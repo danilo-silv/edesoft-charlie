@@ -11,7 +11,7 @@ const Item = styled.div`
   position: relative;
 `
 
-const UserItem: React.FC<TUser> = ({ name, email, phone }) => {
+const UserItemList: React.FC<TUser> = ({ name, email, phone }) => {
   const theme = useTheme()
 
   return (
@@ -26,10 +26,11 @@ const UserItem: React.FC<TUser> = ({ name, email, phone }) => {
             <Heading
               textColor={theme.colors.text.primaryDark}
               level={6}
-              className="capitalize"
+              className="capitalize border-b-2 border-y-brand mb-2"
             >
               {name.firstname} {name.lastname}
             </Heading>
+
             <Text variant="s" textColor={theme.colors.text.primaryLight}>
               {email}, {phone}
             </Text>
@@ -40,4 +41,4 @@ const UserItem: React.FC<TUser> = ({ name, email, phone }) => {
   )
 }
 
-export default UserItem
+export default UserItemList
