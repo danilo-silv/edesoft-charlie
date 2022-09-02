@@ -1,16 +1,190 @@
-import { FC, useMemo } from 'react'
+import React, { FC, useCallback } from 'react'
 
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
+
+import { app } from '../../../hooks'
 import { TUser } from '../../../reducks/resources/user/reducer'
+import theme from '../../../styles/theme'
+import { Avatar, Container, FormItem, Heading, Text } from '../../atoms'
 
-interface TProps {
-  user?: TUser
-}
+const requiredFieldMessage = 'Campo obrigatório'
 
-const UserForm: FC<TProps> = ({ user }) => {
+const schema = yup.object().shape({
+  firstname: yup
+    .string()
+    .min(1, 'Por favor, digite seu nome')
+    .required(requiredFieldMessage)
+    .typeError(requiredFieldMessage),
+  lastname: yup
+    .string()
+    .min(1, 'Por favor, digite seu sobrenome')
+    .required(requiredFieldMessage)
+    .typeError(requiredFieldMessage),
+  email: yup
+    .string()
+    .email('Digite um e-mail válido')
+    .required(requiredFieldMessage)
+    .typeError(requiredFieldMessage),
+  phone: yup
+    .string()
+    .min(1, 'Por favor, seu telfone')
+    .required(requiredFieldMessage)
+    .typeError(requiredFieldMessage)
+})
+
+const UserForm: FC = () => {
+  const { useAppSelector } = app
+
+  const { currentUser } = useAppSelector((state) => state.userReducer)
+
+  const {
+    formState: { errors },
+    register,
+    getValues,
+    trigger
+  } = useForm<TUser>({
+    resolver: yupResolver(schema),
+    mode: 'onChange',
+    reValidateMode: 'onChange'
+  })
+
+  const onSubmit: React.MouseEventHandler<HTMLButtonElement> = useCallback(
+    async (event) => {
+      event.preventDefault()
+
+      const values = getValues()
+
+      const user = { ...currentUser, ...values }
+
+      // eslint-disable-next-line no-console
+      console.log(user)
+      // dispatch(setName(values.name))
+    },
+    [currentUser, getValues]
+  )
+
+  if (!currentUser) return <></>
+
   return (
-    <div className="grid grid-cols-1 gap-3 p-4  divide-y divide-secondary-lightest rounded shadow-[0_1px_20px_-12px_rgba(0,0,0,0.4)]">
-      <h1>TESTE</h1>
-    </div>
+    <Container>
+      <div className="flex flex-col justify-center items-center">
+        <Avatar
+          size="xlg"
+          image="https://randomuser.me/api/portraits/men/34.jpg"
+        />
+        <Heading
+          style={{
+            fontWeight: 600,
+            lineHeight: '125%',
+            margin: '16px 0px',
+            textTransform: 'capitalize'
+          }}
+          textColor={theme.colors.text.primaryDark}
+          level={6}
+        >
+          Editar Perfil
+        </Heading>
+
+        <form className="flex h-full flex-col gap-5 mt-3 w-full max-w-xs">
+          <Text variant="s" textColor={theme.colors.text.primaryDark} bold>
+            Dados Pessoais
+          </Text>
+          <FormItem full margin="0" error={errors.name?.message}>
+            <input
+              defaultValue={currentUser?.name?.firstname}
+              placeholder="Nome"
+              type="text"
+              autoFocus
+              {...register('name.firstname')}
+            />
+            <label htmlFor="name">Nome</label>
+          </FormItem>
+          <FormItem full margin="0" error={errors.name?.message}>
+            <input
+              defaultValue={currentUser?.name?.lastname}
+              placeholder="Sobrenome"
+              type="text"
+              autoFocus
+              {...register('name.lastname')}
+            />
+            <label htmlFor="lastname">Sobrenome</label>
+          </FormItem>
+          <FormItem full margin="0" error={errors.name?.message}>
+            <input
+              defaultValue={currentUser?.email}
+              placeholder="E-mail"
+              type="text"
+              autoFocus
+              {...register('email')}
+            />
+            <label htmlFor="email">E-mail</label>
+          </FormItem>
+          <FormItem full margin="0" error={errors.name?.message}>
+            <input
+              defaultValue={currentUser?.phone}
+              placeholder="Telefone"
+              type="text"
+              autoFocus
+              {...register('phone')}
+            />
+            <label htmlFor="phone">Telefone</label>
+          </FormItem>
+
+          <Text variant="s" textColor={theme.colors.text.primaryDark} bold>
+            Localização
+          </Text>
+
+          <FormItem full margin="0" error={errors.name?.message}>
+            <input
+              defaultValue={currentUser?.address?.street}
+              placeholder="Rua"
+              type="text"
+              autoFocus
+              {...register('address.street')}
+            />
+            <label htmlFor="lastname">Rua</label>
+          </FormItem>
+          <FormItem full margin="0" error={errors.name?.message}>
+            <input
+              defaultValue={currentUser?.address?.number}
+              placeholder="Número"
+              type="text"
+              autoFocus
+              {...register('address.number')}
+            />
+            <label htmlFor="number">Número</label>
+          </FormItem>
+          <FormItem full margin="0" error={errors.name?.message}>
+            <input
+              defaultValue={currentUser?.address?.city}
+              placeholder="Cidade"
+              type="text"
+              autoFocus
+              {...register('address.city')}
+            />
+            <label htmlFor="city">Cidade</label>
+          </FormItem>
+          <FormItem full margin="0" error={errors.name?.message}>
+            <input
+              defaultValue={currentUser?.address?.zipcode}
+              placeholder="CEP"
+              type="text"
+              autoFocus
+              {...register('address.zipcode')}
+            />
+            <label htmlFor="zipcode">CEP</label>
+          </FormItem>
+          <button
+            className="disabled:bg-secondary-lightest py-3 px-4 flex flex-row items-center w-full font-serif bg-brand rounded-3xl justify-center font-semibold text-white hover:bg-brand-hover"
+            onClick={onSubmit}
+          >
+            <div className="order-2 mr-3">Editar</div>
+          </button>
+        </form>
+      </div>
+    </Container>
   )
 }
 
