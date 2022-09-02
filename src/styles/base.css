@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --f-color-brand--primary: #68e49e;
+
+  --f-color-element--primary: #ffffff;
+
+  --f-color-element--secondary-dark: #4d4d4d;
+  --f-color-element--secondary: #737373;
+  --f-color-element--secondary-light: #b3b3b3;
+  --f-color-element--secondary-lightest: #e5e5e5;
+
+  --f-color-element--tertiary: #eba040;
+  --f-color-element--tertiary-light: #f5cf95;
+  --f-color-element--tertiary-lightest: #fbedda;
+
+  --f-color-element--quarternary-lightest: #d0eef2;
+
+  --f-color-element--inactive: #e5e5e5;
+  --f-color-element--error: #e36659;
+  --f-color-element--success: #7cd27b;
+  --f-color-element--lightground: #fcfcfc;
+
+  --f-color-text--primary-darkest: #171717;
+  --f-color-text--primary-dark: #4d4d4d;
+  --f-color-text--primary: #737373;
+  --f-color-text--primary-light: #b3b3b3;
+  --f-color-text--secondary: #ff8686;
+  --f-color-text--success: #3cab3a;
+  --f-color-text--error: #e36659;
+  --f-color-text--white: #ffffff;
+
+  --f-color-hover-brand-element: #b5f2cf;
+}
+
+:root {
+  --f-fontSize--xs: 0.75rem; /* 12px */
+  --f-fontSize--sm: 0.875rem; /* 14px */
+  --f-fontSize--base: 1rem; /* 16px */
+  --f-fontSize--lg: 1.125rem; /* 18px */
+  --f-fontSize--xl: 1.25rem; /* 20px */
+  --f-fontSize--2xl: 1.5rem; /* 24px */
+  --f-fontSize--3xl: 1.75rem; /* 28px */
+  --f-fontSize--4xl: 2rem; /* 32px */
+  --f-fontSize--5xl: 2.5rem; /* 40px */
+  --f-fontSize--6xl: 3.5rem; /* 56px */
+}
+
+:root {
+  --f-fontWeight--normal: 400;
+  --f-fontWeight--semiBold: 600;
+  --f-fontWeight--bold: 700;
+}
+
+:root {
+  --f-lineHeight--tight: 0.875rem; /* 14px */
+  --f-lineHeight--snug: 1rem; /* 16px */
+  --f-lineHeight--normal: 1.125rem; /* 18px */
+  --f-lineHeight--relaxed: 1.25rem; /* 20px */
+  --f-lineHeight--loose: 1.875rem; /* 30px */
+  --f-lineHeight--3: 1.375rem; /* 22px */
+  --f-lineHeight--4: 1.5rem; /* 24px */
+  --f-lineHeight--5: 2rem; /* 32px */
+  --f-lineHeight--6: 2.063rem; /* 33px */
+  --f-lineHeight--7: 2.25rem; /* 36px */
+  --f-lineHeight--8: 2.625rem; /* 42px */
+  --f-lineHeight--9: 2.75rem; /* 44px */
+  --f-lineHeight--10: 3.75rem; /* 60px */
+}
+
+:root {
+  --f-iconSize--xs: 0.5rem; /* 8px */
+  --f-iconSize--s: 0.75rem; /* 12px */
+  --f-iconSize--m: 1.5rem; /* 24px */
+  --f-iconSize--l: 3rem; /* 48px */
+}
+
+:root {
+  --f-borderRadius--xl: 1.5rem; /* 24px */
+  --f-borderRadius--l: 1.25rem; /* 20px */
+  --f-borderRadius--m: 0.625rem; /* 10px */
+  --f-borderRadius--s: 0.25rem; /* 4px */
+}
+
+:root {
+  --f-space--xxxs: 0.25rem; /* 4px */
+  --f-space--xxs: 0.5rem; /* 8px */
+  --f-space--xs: 1rem; /* 16px */
+  --f-space--s: 1.5rem; /* 24px */
+  --f-space--m: 2.5rem; /* 40px */
+  --f-space--l: 3rem; /* 48px */
+  --f-space--xl: 5rem; /* 80px */
+  --f-space--xxl: 15rem; /* 240px */
+}
+
+:root {
+  --f-breakpoint--s: 48rem; /* 768px */
+  --f-breakpoint--m: 64rem; /* 1024px */
+  --f-breakpoint--l: 79.688rem; /* 1275px */
+}
+
+:root {
+  --f-zIndex--Overlay: 100;
+  --f-FileUploader-height: 8.125rem; /* 130px */
+}
+
+:root {
+  --f-typography--primary: 'DM Sans', sans-serif;
+  --f-typography--secondary: 'Assistant', sans-serif;
+}
