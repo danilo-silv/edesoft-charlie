@@ -50,7 +50,7 @@ export const usersSlice = createSlice({
     setUsers: (state, { payload }: PayloadAction<TUser[]>) => {
       state.users = payload
     },
-    setCurrentUser: (state, { payload }: PayloadAction<TUser>) => {
+    setCurrentUser: (state, { payload }: PayloadAction<TUser | undefined>) => {
       state.currentUser = payload
     },
     createPost(state, { payload }: PayloadAction<TUser>) {

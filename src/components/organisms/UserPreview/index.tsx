@@ -1,17 +1,16 @@
-import { FC, useCallback, useState } from 'react'
+import { FC } from 'react'
 
 import { TUser } from '../../../reducks/resources/user/reducer'
 import theme from '../../../styles/theme'
 import { Avatar, Heading, Text } from '../../atoms'
 import Icon from '../../atoms/Icon'
-import Modal from '../../atoms/Modal'
-import { UserForm } from '../../molecules'
 
 interface TProps {
   user: TUser
+  editCurrentUser: () => void
 }
 
-const UserPreview: FC<TProps> = ({ user }) => {
+const UserPreview: FC<TProps> = ({ user, editCurrentUser }) => {
   const {
     name: { firstname, lastname },
     address: { street, number, city, zipcode },
@@ -19,15 +18,9 @@ const UserPreview: FC<TProps> = ({ user }) => {
     phone
   } = user
 
-  const [open, setOpenModal] = useState(false)
-
-  const handleCloseModal = useCallback(() => {
-    setOpenModal(false)
-  }, [])
-
-  const handleEditCurrentUser = useCallback(() => {
-    setOpenModal(true)
-  }, [])
+  const handleEditCurrentUser = () => {
+    if (editCurrentUser) editCurrentUser()
+  }
 
   return (
     <div className="p-4 rounded shadow-[0_1px_20px_-12px_rgba(0,0,0,0.4)]">
@@ -94,9 +87,6 @@ const UserPreview: FC<TProps> = ({ user }) => {
           </Text>
         </div>
       </div>
-      <Modal open={open} onClose={handleCloseModal}>
-        <UserForm onClose={handleCloseModal} />
-      </Modal>
     </div>
   )
 }

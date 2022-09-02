@@ -40,7 +40,7 @@ export const updateUser =
   }
 
 export const currentUser =
-  (user: TUser): AppThunk =>
+  (user?: TUser): AppThunk =>
   async (dispatch) => {
     try {
       dispatch(setCurrentUser(user))

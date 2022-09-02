@@ -12,6 +12,7 @@ import { Avatar, Container, FormItem, Heading, Text } from '../../atoms'
 
 type TProps = {
   onClose: () => void
+  action?: 'CREATE' | 'EDIT'
 }
 
 const requiredFieldMessage = 'Campo obrigatório'
@@ -39,7 +40,7 @@ const schema = yup.object().shape({
     .typeError(requiredFieldMessage)
 })
 
-const UserForm: FC<TProps> = ({ onClose }) => {
+const UserForm: FC<TProps> = ({ onClose, action }) => {
   const { useAppSelector, useAppDispatch } = app
 
   const dispatch = useAppDispatch()
@@ -73,15 +74,16 @@ const UserForm: FC<TProps> = ({ onClose }) => {
     [getValues, currentUser, onClose, dispatch]
   )
 
-  if (!currentUser) return <></>
-
   return (
     <Container>
       <div className="flex flex-col justify-center items-center">
-        <Avatar
-          size="xlg"
-          image="https://randomuser.me/api/portraits/men/34.jpg"
-        />
+        {action !== 'CREATE' && (
+          <Avatar
+            size="xlg"
+            image="https://randomuser.me/api/portraits/men/34.jpg"
+          />
+        )}
+
         <Heading
           style={{
             fontWeight: 600,
@@ -92,7 +94,7 @@ const UserForm: FC<TProps> = ({ onClose }) => {
           textColor={theme.colors.text.primaryDark}
           level={6}
         >
-          Editar Perfil
+          {action === 'CREATE' ? 'Criar' : 'Editar'} usuário
         </Heading>
 
         <form className="flex h-full flex-col gap-5 mt-3 w-full max-w-xs">
@@ -188,7 +190,9 @@ const UserForm: FC<TProps> = ({ onClose }) => {
             className="disabled:bg-secondary-lightest py-3 px-4 flex flex-row items-center w-full font-serif bg-brand rounded-3xl justify-center font-semibold text-white hover:bg-brand-hover"
             onClick={onSubmit}
           >
-            <div className="order-2 mr-3">Editar</div>
+            <div className="order-2 mr-3">
+              {action === 'CREATE' ? 'Criar' : 'Editar'}
+            </div>
           </button>
         </form>
       </div>
