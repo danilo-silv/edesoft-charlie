@@ -24,6 +24,21 @@ export const getUsers = (): AppThunk => async (dispatch) => {
   }
 }
 
+export const updateUser =
+  (user: TUser): AppThunk =>
+  async (dispatch) => {
+    try {
+      dispatch(setLoading(true))
+
+      await integration.resources.user.requests.updateUser(user)
+
+      //simulating a new fake listing
+      dispatch(getUsers())
+    } catch (error) {
+      dispatch(setUsersFailed({ message: 'Um erro ocorreu ao editar usuário' }))
+    }
+  }
+
 export const currentUser =
   (user: TUser): AppThunk =>
   async (dispatch) => {

@@ -95,7 +95,7 @@ const UserPreview: FC<TProps> = ({ user }) => {
         </div>
       </div>
       <Modal open={open} onClose={handleCloseModal}>
-        <UserForm />
+        <UserForm onClose={handleCloseModal} />
       </Modal>
     </div>
   )

@@ -5,9 +5,14 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 import { app } from '../../../hooks'
+import * as resources from '../../../reducks/resources'
 import { TUser } from '../../../reducks/resources/user/reducer'
 import theme from '../../../styles/theme'
 import { Avatar, Container, FormItem, Heading, Text } from '../../atoms'
+
+type TProps = {
+  onClose: () => void
+}
 
 const requiredFieldMessage = 'Campo obrigatório'
 
@@ -34,16 +39,17 @@ const schema = yup.object().shape({
     .typeError(requiredFieldMessage)
 })
 
-const UserForm: FC = () => {
-  const { useAppSelector } = app
+const UserForm: FC<TProps> = ({ onClose }) => {
+  const { useAppSelector, useAppDispatch } = app
+
+  const dispatch = useAppDispatch()
 
   const { currentUser } = useAppSelector((state) => state.userReducer)
 
   const {
     formState: { errors },
     register,
-    getValues,
-    trigger
+    getValues
   } = useForm<TUser>({
     resolver: yupResolver(schema),
     mode: 'onChange',
@@ -58,11 +64,13 @@ const UserForm: FC = () => {
 
       const user = { ...currentUser, ...values }
 
-      // eslint-disable-next-line no-console
-      console.log(user)
-      // dispatch(setName(values.name))
+      if (user?.id !== undefined) {
+        if (onClose) onClose()
+
+        dispatch(resources.user.actions.updateUser(user))
+      }
     },
-    [currentUser, getValues]
+    [getValues, currentUser, onClose, dispatch]
   )
 
   if (!currentUser) return <></>
