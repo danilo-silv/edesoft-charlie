@@ -1,7 +1,9 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 
 import { app } from '../../../hooks'
 import { user } from '../../../reducks/resources'
+import { Container } from '../../atoms'
+import UserList from '../UserList'
 
 const App: FC = () => {
   const { useAppSelector, useAppDispatch } = app
@@ -14,7 +16,13 @@ const App: FC = () => {
     dispatch(user.actions.getUsers())
   }
 
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>
+  return (
+    <Container>
+      <div className="py-16 md:py-28">
+        <UserList users={users} />
+      </div>
+    </Container>
+  )
 }
 
 export default App

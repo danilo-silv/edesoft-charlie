@@ -13,7 +13,8 @@ module.exports = {
         DEFAULT: 'var(--f-color-element--secondary)',
         dark: 'var(--f-color-element--secondary-dark)',
         light: 'var(--f-color-element--secondary-light)',
-        lightest: 'var(--f-color-element--secondary-lightest)'
+        lightest: 'var(--f-color-element--secondary-lightest)',
+        lightground: 'var(--f-color-element--lightground)'
       },
       white: '#fff'
     },
