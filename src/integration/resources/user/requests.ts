@@ -1,14 +1,4 @@
-import * as request from '../../request'
-import { UserSerializers } from './serializers'
+import { TUser } from '../../../reducks/resources/user/reducer'
+import client from '../../client'
 
-const serializers = new UserSerializers()
-
-export const fetchUsers = async () => {
-  try {
-    const res = await request.get('/users')
-
-    return serializers.items(res)
-  } catch (err) {
-    return Promise.reject(err)
-  }
-}
+export const getAllUsers = () => client.get<TUser[]>('/users')

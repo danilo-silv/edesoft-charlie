@@ -6,7 +6,7 @@ export const getUsers = (): AppThunk => async (dispatch) => {
   try {
     dispatch(setLoading(true))
 
-    const { data } = await integration.resources.user.requests.fetchUsers()
+    const { data } = await integration.resources.user.requests.getAllUsers()
 
     console.log(data)
 
