@@ -1,3 +1,4 @@
+import * as integration from '../../../integration'
 import { AppThunk } from '../../store'
 import { setLoading, setUsers, setUsersFailed } from './reducer'
 
@@ -5,7 +6,9 @@ export const getUsers = (): AppThunk => async (dispatch) => {
   try {
     dispatch(setLoading(true))
 
-    // const currentUser = getUsersFromAPI('https://auth-end-point.com/login')
+    const { data } = await integration.resources.user.requests.fetchUsers()
+
+    console.log(data)
 
     // dispatch(setUsers(currentUser))
   } catch (error) {

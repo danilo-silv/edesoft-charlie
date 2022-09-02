@@ -4,11 +4,11 @@ import * as resources from './resources'
 import { UserState } from './resources/user/reducer'
 
 export interface AppState {
-  usersReducer: UserState
+  userReducer: UserState
 }
 
 export const combinedReducers = combineReducers({
-  usersReducer: resources.users.reducer
+  userReducer: resources.users.reducer
 })
 
 export default combinedReducers

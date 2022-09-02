@@ -41,7 +41,7 @@ export const initialState: UserState = {
 }
 
 export const usersSlice = createSlice({
-  name: 'users',
+  name: 'user',
   initialState,
   reducers: {
     setLoading: (state, { payload }: PayloadAction<boolean>) => {
@@ -80,4 +80,4 @@ export const {
 
 export default reducer
 
-export const userSelector = (state: AppState) => state.usersReducer
+export const userSelector = (state: AppState) => state.userReducer
