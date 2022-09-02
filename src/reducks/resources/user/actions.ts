@@ -8,9 +8,7 @@ export const getUsers = (): AppThunk => async (dispatch) => {
 
     const { data } = await integration.resources.user.requests.getAllUsers()
 
-    console.log(data)
-
-    // dispatch(setUsers(currentUser))
+    dispatch(setUsers(data))
   } catch (error) {
     dispatch(setUsersFailed({ message: 'Um erro ocorreu ao buscar usuários' }))
   } finally {

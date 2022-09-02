@@ -8,7 +8,7 @@ export interface AppState {
 }
 
 export const combinedReducers = combineReducers({
-  userReducer: resources.users.reducer
+  userReducer: resources.user.reducer
 })
 
 export default combinedReducers
