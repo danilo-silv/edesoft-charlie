@@ -63,15 +63,41 @@ const UserForm: FC<TProps> = ({ onClose, action }) => {
 
       const values = getValues()
 
-      const user = { ...currentUser, ...values }
+      const {
+        email,
+        name,
+        address: { city, number, street, zipcode },
+        phone
+      } = values
 
-      if (user?.id !== undefined) {
-        if (onClose) onClose()
+      const userFake = {
+        id: currentUser?.id || Math.random(),
+        email,
+        username: name.firstname,
+        password: currentUser?.password || '#ce',
+        name,
+        address: {
+          city,
+          number,
+          street,
+          zipcode,
+          geolocation: {
+            lat: currentUser?.address?.geolocation?.lat || '-37.3159',
+            long: currentUser?.address?.geolocation?.long || '81.1496'
+          }
+        },
+        phone
+      }
 
-        dispatch(resources.user.actions.updateUser(user))
+      if (onClose) onClose()
+
+      if (action === 'EDIT') {
+        dispatch(resources.user.actions.updateUser(userFake))
+      } else {
+        dispatch(resources.user.actions.createUser(userFake))
       }
     },
-    [getValues, currentUser, onClose, dispatch]
+    [getValues, currentUser, onClose, action, dispatch]
   )
 
   return (
