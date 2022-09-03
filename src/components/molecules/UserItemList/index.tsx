@@ -35,7 +35,7 @@ const UserItemList: React.FC<TUser> = (user) => {
   return (
     <Item
       onClick={handleCurrentUser}
-      className={`cursor-pointer border-b py-2 border-secondary-lightest divide-secondary-lightest ${
+      className={`cursor-pointer border-b py-2 border-secondary-lightest divide-secondary-lightest hover:opacity-60 duration-400 ease-in-out ${
         isActive && 'bg-brand-hover'
       }`}
     >

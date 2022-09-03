@@ -15,8 +15,6 @@ export const getUsers = (): AppThunk => async (dispatch) => {
     const { data } = await integration.resources.user.requests.getAllUsers()
 
     dispatch(setUsers(data))
-
-    dispatch(setCurrentUser(data[1]))
   } catch (error) {
     dispatch(setUsersFailed({ message: 'Um erro ocorreu ao buscar usuários' }))
   } finally {
@@ -61,6 +59,8 @@ export const deleteUser =
       dispatch(setLoading(true))
 
       await integration.resources.user.requests.deleteUser(user)
+
+      dispatch(currentUser())
 
       //simulating a new fake listing
       dispatch(getUsers())

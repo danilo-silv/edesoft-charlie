@@ -47,6 +47,8 @@ const UserForm: FC<TProps> = ({ onClose, action }) => {
 
   const { currentUser } = useAppSelector((state) => state.userReducer)
 
+  const isCreate = action === 'CREATE' ?? true
+
   const {
     formState: { errors },
     register,
@@ -129,7 +131,7 @@ const UserForm: FC<TProps> = ({ onClose, action }) => {
           </Text>
           <FormItem full margin="0" error={errors.name?.message}>
             <input
-              defaultValue={currentUser?.name?.firstname}
+              defaultValue={isCreate ? '' : currentUser?.name?.firstname}
               placeholder="Nome"
               type="text"
               autoFocus
@@ -139,7 +141,7 @@ const UserForm: FC<TProps> = ({ onClose, action }) => {
           </FormItem>
           <FormItem full margin="0" error={errors.name?.message}>
             <input
-              defaultValue={currentUser?.name?.lastname}
+              defaultValue={isCreate ? '' : currentUser?.name?.lastname}
               placeholder="Sobrenome"
               type="text"
               autoFocus
@@ -149,7 +151,7 @@ const UserForm: FC<TProps> = ({ onClose, action }) => {
           </FormItem>
           <FormItem full margin="0" error={errors.name?.message}>
             <input
-              defaultValue={currentUser?.email}
+              defaultValue={isCreate ? '' : currentUser?.email}
               placeholder="E-mail"
               type="text"
               autoFocus
@@ -159,7 +161,7 @@ const UserForm: FC<TProps> = ({ onClose, action }) => {
           </FormItem>
           <FormItem full margin="0" error={errors.name?.message}>
             <input
-              defaultValue={currentUser?.phone}
+              defaultValue={isCreate ? '' : currentUser?.phone}
               placeholder="Telefone"
               type="text"
               autoFocus
@@ -174,7 +176,7 @@ const UserForm: FC<TProps> = ({ onClose, action }) => {
 
           <FormItem full margin="0" error={errors.name?.message}>
             <input
-              defaultValue={currentUser?.address?.street}
+              defaultValue={isCreate ? '' : currentUser?.address?.street}
               placeholder="Rua"
               type="text"
               autoFocus
@@ -184,7 +186,7 @@ const UserForm: FC<TProps> = ({ onClose, action }) => {
           </FormItem>
           <FormItem full margin="0" error={errors.name?.message}>
             <input
-              defaultValue={currentUser?.address?.number}
+              defaultValue={isCreate ? '' : currentUser?.address?.number}
               placeholder="Número"
               type="text"
               autoFocus
@@ -194,7 +196,7 @@ const UserForm: FC<TProps> = ({ onClose, action }) => {
           </FormItem>
           <FormItem full margin="0" error={errors.name?.message}>
             <input
-              defaultValue={currentUser?.address?.city}
+              defaultValue={isCreate ? '' : currentUser?.address?.city}
               placeholder="Cidade"
               type="text"
               autoFocus
@@ -204,7 +206,7 @@ const UserForm: FC<TProps> = ({ onClose, action }) => {
           </FormItem>
           <FormItem full margin="0" error={errors.name?.message}>
             <input
-              defaultValue={currentUser?.address?.zipcode}
+              defaultValue={isCreate ? '' : currentUser?.address?.zipcode}
               placeholder="CEP"
               type="text"
               autoFocus

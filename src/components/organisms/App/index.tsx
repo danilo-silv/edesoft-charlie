@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react'
+import { FC, useCallback, useEffect, useState } from 'react'
 
 import { app } from '../../../hooks'
 import { user } from '../../../reducks/resources'
@@ -27,12 +27,8 @@ const App: FC = () => {
   }
 
   const handleCloseModal = useCallback(() => {
-    if (users?.length) {
-      dispatch(user.actions.currentUser(users[1]))
-    }
-
     setOpenModal(false)
-  }, [dispatch, users])
+  }, [])
 
   const handleEditCurrentUser = useCallback(() => {
     setAction('EDIT')
@@ -41,16 +37,20 @@ const App: FC = () => {
   }, [])
 
   const handleCreateUser = useCallback(() => {
-    dispatch(user.actions.currentUser())
-
     setAction('CREATE')
 
     setOpenModal(true)
-  }, [dispatch])
+  }, [])
 
   const handleDeleteUser = useCallback(() => {
     if (currentUser) dispatch(user.actions.deleteUser(currentUser))
   }, [dispatch, currentUser])
+
+  useEffect(() => {
+    if (users?.length && !isLoading) {
+      dispatch(user.actions.currentUser(users[1]))
+    }
+  }, [dispatch, isLoading, users])
 
   return (
     <Container>
