@@ -1,46 +1,81 @@
-# Getting Started with Create React App
+# CRUD de usuários faker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> _`Aplicação que contém as operações de um crud de usuários faker`_ <br />
+> Está aplicação tem como objetivo apresentar para o usuário uma lista de usuários, um formulário para criar e editar um usuário e uma função para excluir o usuário.
 
-## Available Scripts
+### API externa
 
-In the project directory, you can run:
+- Documentação: https://fakestoreapi.com/docs
+- Codigo fonte: https://github.com/keikaavousi/fake-store-api
 
-### `yarn start`
+### Tecnologia
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React
+- Typescript
+- Redux
+- Redux toolkit
+- Axios
+- Lodash
+- Yup
+- ESlint
+- PostCSS / SASS / tailwind / Styled-Components
+- Prettier
+- Husky
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Pré-requisito
 
-### `yarn test`
+`NPM`
+`NODE`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Variavéis de ambiente
 
-### `yarn build`
+Defina as variáveis ​​do aplicativo de acordo com o arquivo [`.env.sample`](.env.sample) como modelo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+REACT_APP_API_BASE_URL=https://fakestoreapi.com
+REACT_APP_API_HEADERS_CONTENT_TYPE=application/json
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Inicialização
 
-### `yarn eject`
+Se você estiver usando o [`nvm - Node version manager`](https://github.com/nvm-sh/nvm), você pode rodar:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+$ git clone https://github.com/danilo-silv/edesoft-charlie.git
+$ cd edesoft-charlie
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+$ nvm install
+$ nvm use
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Found '/(...)/edesoft-charlie/.nvmrc' with version <v16.14.2>
+Now using node v16.14.2
 
-## Learn More
+$ node -v
+v16.14.2
+$ yarn -v
+1.22.17
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Agora, instale as dependências e rode a aplicação
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+yarn && yarn dev
+```
+
+A aplicação vai abrir na automaticamente na rota:
+
+```bash
+http://localhost:3000/
+```
+
+```
+### Autor
+
+- Danilo Silva e Silva
+
+### Visualização
+
+Projeto hospedado no keroku, clique no link para visulização: [Consulta Tabela Fipe](https://consulta-tabela-fipe.herokuapp.com)
+```
