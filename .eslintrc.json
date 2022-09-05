@@ -34,11 +34,7 @@
   ],
   "ignorePatterns": [
     "node_modules/",
-    "public/",
-    "out/",
-    ".next/",
-    ".serverless/",
-    ".serverless-next/"
+    "public/"   
   ],
   "rules": {
     "semi": [
@@ -133,8 +129,8 @@
     ],
     "padding-line-between-statements": [
       "error",
-      { "blankLine": "always", "prev": "*", "next": "*" },
-      { "blankLine": "any", "prev": "import", "next": "import" }
+      { "blankLine": "always", "prev": "*" },
+      { "blankLine": "any", "prev": "import"}
     ],
     "no-fallthrough": "off"
   }
